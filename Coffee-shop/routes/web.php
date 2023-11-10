@@ -14,6 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('helo');
+    return view('welcome');
 });
 include_once __DIR__.'/be.php';
