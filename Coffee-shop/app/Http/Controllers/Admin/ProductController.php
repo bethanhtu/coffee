@@ -1,85 +1,90 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\Product;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function list()
     {
         //
+        $list = Product::all();
+        $categories = Category::all();
+        return view('be.product.list',compact('list', 'categories'));
+    }
+    public function doAdd(Request $request)
+    {
+        $categories = Category::all();
+        return view('be.product.add',compact('categories'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function add(Request $request)
     {
-        //
+        try {
+            $data = $request->all();
+            unset($data['_token']);
+            $mainImage = $data['mainImage'];
+            $secondImage = $data['secondImage'];
+            $mainImageName = time().'1'.$mainImage->getClientOriginalName();
+            $secondImageName = time().'2'.$secondImage->getClientOriginalName();
+            $mainImage->storeAs('/products', $mainImageName, 'public');
+            $secondImage->storeAs('/products', $secondImageName, 'public');
+            $data['main_image'] = 'storage/products/' . $mainImageName;
+            $data['second_image'] = 'storage/products/' . $secondImageName;
+            Product::create($data);
+        }catch (Exception $exception){
+            return redirect()->back()->with('error','Thêm thất bại');
+        }
+        return redirect(route('admin.product.list'))->with('success', "Thêm thành công");
+
+    }
+    public function upload(Request $request) {
+        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function doEdit($id){
+        $product = Product::find($id);
+        $categories = Category::all();
+        return view('be.product.edit', compact('product', 'categories'));
+    }
+    public function edit(Request $request)
     {
-        //
+        try {
+            $data = $request->all();
+            $product = Product::find($data['id']);
+            unset($data['_token']);
+            if (empty($data['mainImage'])){
+                $data['main_image'] = $product['main_image'];
+            } else{
+                Storage::disk('public')->delete($product['main_image']);
+                $mainImage = $data['mainImage'];
+                $mainImageName = time().'1'.$mainImage->getClientOriginalName();
+                $mainImage->storeAs('/products', $mainImageName, 'public');
+                $data['main_image'] = 'storage/products/' . $mainImageName;
+            }
+            if (empty($data['secondImage'])){
+                $data['second_image'] = $product['second_image'];
+            } else{
+                Storage::disk('public')->delete($product['second_image']);
+                $secondImage = $data['secondImage'];
+                $secondImageName = time().'2'.$secondImage->getClientOriginalName();
+                $secondImage->storeAs('/products', $secondImageName, 'public');
+                $data['second_image'] = 'storage/products/' . $secondImageName;
+            }
+            unset($data['insert']);
+            unset($data['mainImage']);
+            unset($data['secondImage']);
+            Product::where('id', $data['id'])->update($data);
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Sửa thất bại');
+        }
+        return redirect(route('admin.product.list'))->with('success', 'Sửa thành công');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

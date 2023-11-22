@@ -1,20 +1,18 @@
 @extends('be.layout')
 @section('content')
     <div class="col-lg-12">
-        <h2>Admin</h2>
+        <h2>Category</h2>
         <div class="text-right" >
             <button class="btn btn-primary" data-toggle="modal" data-target="#modalinsert">Thêm</button>
         </div>
         <div><hr></div>
         <!-- Table -->
         <div class="table-responsive">
-            <table class="table table-hover" id="dataTable">
+            <table class="table table-hover table-striped" id="dataTable">
                 <thead class="table">
-                <tr class="bg-primary text-white rounded-top">
+                <tr class="bg-primary text-white">
                     <th>Id</th>
-                    <th>Tên</th>
-                    <th>Email</th>
-                    <th>Số điện thoại</th>
+                    <th>Loại sản phẩm</th>
                     <th>Thao tác</th>
                 </tr>
                 </thead>
@@ -23,11 +21,9 @@
                 <tr>
                     <td>{{$item->id}}</td>
                     <td>{{$item->name}}</td>
-                    <td>{{$item->email}}</td>
-                    <td>{{$item->phone}}</td>
                     <td>
                         <a array="{{$item}}" id="{{$item->id}}" class="edituser btn btn btn-outline-warning">Sửa</a>
-                        <a class="btn btn-outline-danger" href="{{route('admin.user.delete', ['id'=>$item->id])}}" onclick="return confirm('Bạn có muốn xóa không')">Xóa</a>
+                        <a class="btn btn-outline-danger" href="{{route('admin.category.delete', ['id'=>$item->id])}}" onclick="return confirm('Bạn có muốn xóa không')">Xóa</a>
                     </td>
                 </tr>
                 @endforeach
@@ -39,10 +35,10 @@
         <div class="modal fade" id="modalinsert" >
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{route('admin.user.add')}}"  method="post"   role="form" enctype="multipart/form-data">
+                    <form action="{{route('admin.category.add')}}"  method="post"   role="form" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
-                            <legend>Thêm thông tin User</legend>
+                            <legend>Thêm thông tin danh mục</legend>
                         </div>
                         <div class="modal-body">
 
@@ -51,21 +47,6 @@
                                 <input type="text" class="form-control"  id="name" name="name"   value="" onblur="checkname()"; Required />
                             </div>
 
-                            <div class="form-group">
-                                <label for="">Email</label> <span id="erroremail"></span>
-                                <input type="text" class="form-control"  id="email" name="email"  value="" onblur="checkEmail();" Required>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="">password</label> <span id="errorpassword"></span>
-                                <input type="password" class="form-control" id="password" name="password"   value="" onblur="checkPass();" Required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">phone</label> <span id="errorphone"></span>
-                                <input type="number" class="form-control" id="phone" name="phone" value="" onblur="checkPhone();" Required>
-                            </div>
                         </div>
 
                         <div class="modal-footer">
@@ -81,10 +62,10 @@
         <div class="modal fade" id="modalupdate" >
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="{{route('admin.user.edit')}}"  method="post"   role="form" enctype="multipart/form-data">
+                    <form action="{{route('admin.category.edit')}}"  method="post"   role="form" enctype="multipart/form-data">
                         @csrf
                         <div class="modal-header">
-                            <legend>Sửa thông tin User</legend>
+                            <legend>Sửa thông tin danh mục</legend>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
@@ -93,26 +74,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="">Tên</label> <span id="errorname"></span>
+                                <label for="">Tên danh mục</label> <span id="errorname"></span>
                                 <input type="text" class="form-control"  id="ename" name="name"   value="" onblur="checkname()"; Required />
                             </div>
-
-                            <div class="form-group">
-                                <label for="">Email</label> <span id="erroremail"></span>
-                                <input type="text" class="form-control"  id="eemail" name="email"  value="" onblur="checkEmail();" Required>
-                            </div>
-
-
-                            <div class="form-group">
-                                <label for="">password</label> <span id="errorpassword"></span>
-                                <input type="password" class="form-control" id="epassword" name="password"   value="" onblur="checkPass();">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="">phone</label> <span id="errorphone"></span>
-                                <input type="number" class="form-control" id="ephone" name="phone" value="" onblur="checkPhone();" Required>
-                            </div>
-
 
                         </div>
 

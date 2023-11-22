@@ -16,15 +16,16 @@ return new class extends Migration
         //
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->bigInteger('category_id');
+            $table->string('name');
+            $table->integer('quantity');
             $table->double('price');
-            $table->bigInteger('quantity');
-            $table->text('short_description');
+            $table->string('main_image');
+            $table->string('second_image');
+            $table->bigInteger('variant_id')->nullable();
+            $table->bigInteger('sold')->default(0);
+            $table->string('origin');
             $table->longText('content');
-            $table->double('discount_id');
-            $table->bigInteger('variant_id');
-            $table->bigInteger('variant_value_id');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -38,5 +39,10 @@ return new class extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('origin');
+            $table->dropColumn('content');
+        });
     }
 };

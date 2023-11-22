@@ -43,10 +43,20 @@ class AdminController extends Controller
             $user->password = $data['password'];
             $user->phone = $data['phone'];
             $user->save();
-        }catch (\Exception $e){
+        }catch (Exception $e){
             return redirect()->back()->with('error','Sửa thất bại');
         }
         return redirect()->back()->with('success','Sửa thành công');
+    }
 
+    //Delete
+    public function delete($id)
+    {
+        try {
+            Admin::where('id', $id)->delete();
+        }catch(Exception $exception) {
+            return redirect()->back()->with('error','Xóa thất bại');
+        }
+        return redirect()->back()->with('success','Xóa thành công');
     }
 }
