@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <title>Coffee Admin</title>
 
@@ -21,6 +22,7 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('/admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
     <link href="{{asset('/admin/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    
 
 </head>
 
@@ -347,23 +349,27 @@
 
             </nav>
             <!-- End of Topbar -->
+            
 
             <!-- Begin Page Content -->
             @if(\Illuminate\Support\Facades\Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>Success!</strong>{{\Illuminate\Support\Facades\Session::get('success')}}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+            <div class="alert alert-success" role="alert" id="successAlert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="alert-heading">Well done!</h4>
+                <p class="mb-0">{{\Illuminate\Support\Facades\Session::get('success')}}</p>
+            </div>
             @endif
             @if(\Illuminate\Support\Facades\Session::has('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Error!</strong>{{\Illuminate\Support\Facades\Session::get('error')}}
+                 <div class="alert alert-danger" role="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
+                    <h4 class="alert-heading">Xảy ra lỗi!</h4>
+                    <p class="mb-0">{{\Illuminate\Support\Facades\Session::get('error')}}</p>
                 </div>
+         
             @endif
             <div class="container-fluid">
                 @yield('content')
@@ -414,6 +420,9 @@
     </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('/admin/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('/admin/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
@@ -431,21 +440,18 @@
 <script src="{{asset('/admin/js/myjs.js')}}"></script>
 
 <!--  -->
-<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
-
-<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-</script>
+<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ),{
+                ckfinder: {
+                    uploadUrl: '{{route('image.upload').'?_token='.csrf_token()}}',
+        }
+            })
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
 </body>
 
 </html>

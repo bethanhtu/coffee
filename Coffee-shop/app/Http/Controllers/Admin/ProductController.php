@@ -11,19 +11,20 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+    // List
     public function list()
     {
-        //
         $list = Product::all();
         $categories = Category::all();
         return view('be.product.list',compact('list', 'categories'));
     }
+    
+    // Add
     public function doAdd(Request $request)
     {
         $categories = Category::all();
         return view('be.product.add',compact('categories'));
     }
-
     public function add(Request $request)
     {
         try {
@@ -44,10 +45,8 @@ class ProductController extends Controller
         return redirect(route('admin.product.list'))->with('success', "Thêm thành công");
 
     }
-    public function upload(Request $request) {
-        
-    }
 
+    // Edit
     public function doEdit($id){
         $product = Product::find($id);
         $categories = Category::all();
@@ -85,6 +84,33 @@ class ProductController extends Controller
             return redirect()->back()->with('error', 'Sửa thất bại');
         }
         return redirect(route('admin.product.list'))->with('success', 'Sửa thành công');
+    }
+
+    // Delete
+    public function delete($id)
+    {
+        try {
+            Product::where('id', $id)->delete();
+        }catch(Exception $exception) {
+            return redirect()->back()->with('error','Xóa thất bại');
+        }
+        return redirect()->back()->with('success','Xóa thành công');
+    }
+
+    // CkEditer
+    public function storeImage(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
+    
+            $request->file('upload')->move(public_path('media'), $fileName);
+    
+            $url = asset('media/' . $fileName);
+            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+        }
     }
 
 }

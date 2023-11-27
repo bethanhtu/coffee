@@ -9,19 +9,14 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // List Category
     public function list()
     {
-        //
         $list = Category::all();
         return view('be.category.list',compact('list'));
     }
-
-
+    
+    // Add
     public function add(Request $request)
     {
         try {

@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
-    //
+    // List
     public function list()
     {
         $list= Admin::all();
         return view('be.user.list',compact('list'));
     }
+
     // Add user
     public function add(Request $request)
     {

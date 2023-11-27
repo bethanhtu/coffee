@@ -112,8 +112,6 @@
                                 <label for="">phone</label> <span id="errorphone"></span>
                                 <input type="number" class="form-control" id="ephone" name="phone" value="" onblur="checkPhone();" Required>
                             </div>
-
-
                         </div>
 
                         <div class="modal-footer">

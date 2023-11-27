@@ -1,83 +1,59 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function list()
     {
-        //
+        $list= User::all();
+        return view('be.user.list',compact('list'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function add(Request $request)
     {
-        //
+        try {
+            $data = $request->all();
+            unset($data['_token']);
+            $data['password'] = Hash::make($data['password']);
+            User::create($data);
+        } catch (Exception $exception){
+            return redirect()->back()->with('error','thêm thất bại');
+        }
+        return redirect()->back()->with('success','thêm thành công');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit( Request $request)
     {
-        //
+        try {
+            $data = $request->all();
+            $user = User::find($data['id']);
+            $data['password'] = Hash::make($data['password']);
+            $user->name = $data['name'];
+            $user->email = $data['email'];
+            $user->password = $data['password'];
+            $user->phone = $data['phone'];
+            $user->save();
+        }catch (\Exception $e){
+            return redirect()->back()->with('error','Sửa thất bại');
+        }
+        return redirect()->back()->with('success','Sửa thành công');
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function delete($id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        try {
+            User::where('id', $id)->delete();
+        }catch (Exception $exception){
+            return redirect()->back()->with('error','Xóa thất bại');
+        }
+        return redirect()->back()->with('success','Xoá thành công');
     }
 }

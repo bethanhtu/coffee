@@ -24,25 +24,9 @@ return new class extends Migration
             $table->string('second_image');
             $table->bigInteger('variant_id')->nullable();
             $table->bigInteger('sold')->default(0);
-            $table->string('origin');
             $table->longText('content');
             $table->softDeletes();
             $table->timestamps();
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        //
-        Schema::dropIfExists('products');
-        Schema::table('products', function (Blueprint $table) {
-            $table->dropColumn('origin');
-            $table->dropColumn('content');
         });
     }
 };
