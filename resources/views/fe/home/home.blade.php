@@ -1,6 +1,7 @@
 @extends('fe.layout')
 @section('content')
 <!-- BANNER -->
+<h1>Test git desktop</h1>
 <div id="home" class="header_slider slider-active">
     <div class="single_slider bg_cover d-flex align-items-center" style="background-image: url({{ asset('/interface/images/slider-1.jpg')}})">
         <div class="container">
