@@ -79,6 +79,9 @@
                                             <li class="nav-item">
                                                 <a class="" href="{{route('users.contact')}}">Liên hệ</a>
                                             </li>
+                                            <li class="nav-item">
+                                                <a class="" href="{{route('order')}}"><i class="lni lni-cart"></i></a>
+                                            </li>
                                         </ul>
                                     </div> <!-- navbar collapse -->
                                 </nav> <!-- navbar -->
@@ -127,7 +130,7 @@
                                         <ul>
                                             <li>Thứ hai-Thứ sáu: 08.00 A.M - 10.00 P.M</li>
                                             <li>Thứ bảy: 08.00 A.M - 02.00 P.M</li>
-                                            <li>Chủ nhật: Closed</li>
+                                            <li>Chủ nhật: Đóng cửa</li>
                                             <li>Ngày lễ: 08.00 A.M - 02.00 P.M</li>
                                         </ul>
                                     </div> <!-- footer link -->
@@ -135,7 +138,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 order-md-2 order-lg-3">
                                 <div class="footer_instagram mt-45">
-                                    <h4 class="footer_title">Instagram Feed</h4>
+                                    <h4 class="footer_title">Bảng tin Instagram</h4>
                                     <div class="instagram_image">
                                         <a href="#"><img src="{{asset('/interface/images/instagram-1.jpg')}}" alt="instagram"></a>
                                         <a href="#"><img src="{{asset('/interface/images/instagram-2.jpg')}}" alt="instagram"></a>
@@ -155,7 +158,7 @@
                 <div class="footer_copyright">
                     <div class="container">
                         <div class="copyright text-center">
-                            <p>Copyright by <a href="#" rel="nofollow">WinterCoffee</a></p>
+                            <p>Copyright by <a href="{{route('admin.dashboard')}}" rel="nofollow">WinterCoffee</a></p>
                         </div> <!-- copyright -->
                     </div> <!-- contact form -->
                 </div> <!-- footer copyright -->

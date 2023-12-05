@@ -113,7 +113,7 @@
         <div class="row align-items-center">
             <div class="col-lg-6">
                 <div class="about_image mt-50 wow fadeInRightBig" data-wow-duration="1.3s" data-wow-delay="0.5s">
-                    <img src="{{ asset('/interface/images/about.jpg')}}" alt="about">
+                    <img src="{{ asset('/interface/images/about-1.jpg')}}" alt="about">
                 </div> <!-- about image -->
             </div>
             <div class="col-lg-6">

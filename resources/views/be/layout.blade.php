@@ -35,11 +35,13 @@
         <ul class="navbar-nav bg-gradient-white sidebar sidebar-white accordion toggled font-weight-bold" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center my-" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center my-" href="{{route('users.home')}}">
                 <div class="sidebar-brand-icon">
                     <img height="40px" src="{{ asset('/interface/images/logo.png')}}" alt="logo" srcset="">
                 </div>
-                <div class="sidebar-brand-text mx-1"><h6 class="font-weight-bold text-">WinterCoffee</h6></div>
+                <div class="sidebar-brand-text mx-1">
+                    <h6 class="font-weight-bold">Admin</h6>
+                </div>
             </a>
 
             <!-- Divider -->
@@ -77,11 +79,16 @@
                     <i class="fas fa-layer-group fa-sm"></i>
                     <span>Danh mục</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.blog.list')}}">
+                    <i class="fas fa-newspaper fa-sm"></i>
+                    <span>Bài viết</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Bảng</span></a>
@@ -95,7 +102,7 @@
                     </div>
                 </div>
             </li>
-            <hr class="sidebar-divider">
+            <hr class="sidebar-divider"> -->
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="{{route('admin.charts')}}">
@@ -129,16 +136,19 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                    <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                        <ul id="nav" class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="" href="{{route('users.home')}}">Trang chủ</a>
+                            </li>
+                            <li class="nav-item mx-2">
+                                <a class="" href="{{route('users.product')}}">Sản phẩm</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="" href="{{route('users.blog')}}">Blog</a>
+                            </li>
+                        </ul>
+                    </div> <!-- navbar collapse -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -277,27 +287,27 @@
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">BeTu</span>
                                 <img class="img-profile rounded-circle" src="https://static2.yan.vn/YanNews/2167221/202303/anh-chup-man-hinh-20230319-luc-193012-303d1ba3.png">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="#">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
+                                    Tài khoản
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
+                                    <i class="fas fa-cog fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Cài đặt
                                 </a>
                                 <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
+                                    <i class="fas fa-question fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Hỗ trợ
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{route('admin.logout')}}" data-toggle="" data-target="#">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Đăng xuất
                                 </a>
                             </div>
                         </li>
@@ -363,12 +373,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn đăng xuất tài khoản ?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Chọn "Đăng xuất" bên dưới nếu bạn sẵn sàng kết thúc phiên hiện tại của mình.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <a class="btn btn-primary" href="{{route('admin.logout')}}">Logout</a>

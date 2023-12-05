@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
@@ -28,13 +29,26 @@ class HomeController extends Controller
         return view('fe.product.product', compact('categories','products','newProducts'));
     }
     //
-    public function blog()
+    public function detail()
     {
         $categories = Category::all();
         $products = Product::all();
         $newProducts = Product::orderBy('id', 'desc')->take(4)->get();
-
-        return view('fe.blog.blog', compact('categories','products','newProducts'));
+        return view('fe.product.detail', compact('categories','products','newProducts'));
+    }
+    //
+    public function order()
+    {
+        $categories = Category::all();
+        $products = Product::all();
+        $newProducts = Product::orderBy('id', 'desc')->take(4)->get();
+        return view('fe.order', compact('categories','products','newProducts'));
+    }
+    //
+    public function blog()
+    {
+        $blogs = Blog::all();
+        return view('fe.blog.blog', compact('blogs'));
     }
     //
     public function about()

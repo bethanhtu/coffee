@@ -43,6 +43,7 @@ $(document).ready(function () {
 
         // Other code to set values in the modal
         $('#eid').val(obj['id']);
+        $('#etitle').val(obj['title']);
         $('#ename').val(obj['name']);
         $('#ecategory_id').val(obj['category_id']);
         $('#equantity').val(obj['quantity']);

@@ -1,9 +1,25 @@
 @extends('fe.layout')
 @section('content')
-<div style="margin-top: 84px;"></div>
-<!-- BANNER -->
-<img src="{{ asset('/interface/images/slider-p.jpg')}}" alt="" srcset="">
-<!-- BANNER -->
+<style>
+    .single_slider {
+        height: 400px;
+    }
+</style>
+<div id="home" class="">
+    <div class="single_slider bg_cover d-flex align-items-center" style="background-image: url({{ asset('/interface/images/slider-p.jpg')}})">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="slider_content text-center">
+                        <!-- <h2 class="slider_title text-primary">WinterCoffee</h2> -->
+                        <!-- <p class="wow fadeInUp">Hành trình từ hạt đến ly cà phê </p> -->
+                        <!-- <a href="#about" class="btn btn-outline-primary mt-3">Learn More</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- BEST COFFEE SELLERS -->
 <section id="menu" class="coffee_menu bg_cover pt-50 pb-50">
     <div class="container">

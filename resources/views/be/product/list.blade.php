@@ -9,7 +9,7 @@
         <hr>
     </div>
     <div class="table-responsive">
-        <table class="table table-hover align-middle rounded-top overflow-hidden mb-0 bg-white" id="dataTable">
+        <table class="table table-hover align-middle rounded-top overflow-hidden" id="dataTable">
             <thead class="bg-primary text-white rounded-top">
                 <tr class="">
                     <th>id</th>
@@ -162,7 +162,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary " id="modalupdateBtn" data-dismiss="modal">Đóng</button>
-                            <button type="submit" name="insert" class="btn btn-primary">Lưu</button>
+                            <button type="submit" name="insert" class="btn btn-primary"><i class="fas fa-save mr-1"></i>Lưu</button>
                         </div>
                     </form>
                 </div>

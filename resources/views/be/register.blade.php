@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{ asset('/interface/images/logo.png')}}" type="image/x-icon">
 
-    <title>Đăng nhập</title>
+    <title>Đăng ký</title>
     <!-- Custom fonts for this template-->
     <link href="{{asset('/admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <!-- Custom styles for this template-->
@@ -37,31 +37,35 @@
                                 <div class="p-5">
                                     <div class="d-flex align-items-center justify-content-center my-4">
                                         <img height="40px" src="{{ asset('/interface/images/logo.png')}}" alt="logo" srcset="">
-                                        <h4 class="text-primary font-weight-bold">Đăng nhập</h4>
+                                        <h4 class="text-primary font-weight-bold">Đăng ký</h4>
                                     </div>
-                                    <form class="user" action="{{route('login')}}" method="post">
+                                    <form class="user" action="{{route('users.register')}}" method="post" role="form" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nhập email của bạn" name="email">
+                                            <input type="text" class="form-control form-control-user" id="name" name="name" value="" onblur="checkname()" placeholder="Tên" ; Required />
                                         </div>
+
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Mật khẩu" name="password">
+                                            <input type="text" class="form-control form-control-user" id="email" name="email" value="" onblur="checkEmail();" placeholder="Email" Required>
                                         </div>
+
+
                                         <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck">
-                                                <label class="custom-control-label" for="customCheck">Remember
-                                                    Me</label>
-                                            </div>
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" value="" onblur="checkPass();" placeholder="Mật khẩu" Required>
                                         </div>
-                                        <button class="btn btn-primary btn-user btn-block" type="submit">Đăng nhập</button>
+
+                                        <div class="form-group">
+                                            <input type="number" class="form-control form-control-user" id="phone" name="phone" value="" onblur="checkPhone();" placeholder="Số điện thoại" Required>
+                                        </div>
+
+                                        <button class="btn btn-primary btn-user btn-block" type="submit">Đăng ký</button>
                                     </form>
                                     <hr>
                                     <div class="text-center">
                                         <a class="small" href="forgot-password.html">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="{{route('register')}}">Bạn chưa có tài khoản !</a>
+                                        <a class="small" href="{{route('login')}}">Đăng nhập !</a>
                                     </div>
                                 </div>
                             </div>

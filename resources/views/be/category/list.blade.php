@@ -8,10 +8,10 @@
         <div><hr></div>
         <!-- Table -->
         <div class="table-responsive">
-            <table class="table table-hover" id="dataTable">
+            <table class="table table-hover rounded-top overflow-hidden" id="dataTable">
                 <thead class="table">
                 <tr class="bg-primary text-white">
-                    <th>Id</th>
+                    <th>id</th>
                     <th>Loại sản phẩm</th>
                     <th>Thao tác</th>
                 </tr>
@@ -82,7 +82,7 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" id="modalupdateBtn" data-dismiss="modal">Đóng</button>
-                            <button type="submit"  name="insert" class="btn btn-primary">Sửa</button>
+                            <button type="submit"  name="insert" class="btn btn-primary"><i class="fas fa-save mr-1"></i>Lưu</button>
                         </div>
                     </form>
                 </div>
