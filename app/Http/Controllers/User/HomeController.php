@@ -29,11 +29,12 @@ class HomeController extends Controller
         return view('fe.product.product', compact('categories','products','newProducts'));
     }
     //
-    public function detail()
+    public function detail($id)
     {
         $categories = Category::all();
-        $products = Product::all();
+        $products = Product::find($id);
         $newProducts = Product::orderBy('id', 'desc')->take(4)->get();
+
         return view('fe.product.detail', compact('categories','products','newProducts'));
     }
     //
@@ -50,6 +51,12 @@ class HomeController extends Controller
         $blogs = Blog::all();
         return view('fe.blog.blog', compact('blogs'));
     }
+     //
+     public function posts($id)
+     {
+         $blogs = Blog::find($id);
+         return view('fe.blog.posts', compact('blogs'));
+     }
     //
     public function about()
     {

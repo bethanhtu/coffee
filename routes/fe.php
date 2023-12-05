@@ -8,7 +8,10 @@ use Illuminate\Support\Facades\Route;
    Route::get('/blog', [HomeController::class, 'blog'])->name('users.blog');
    Route::get('/about', [HomeController::class, 'about'])->name('users.about');
    Route::get('/contact', [HomeController::class, 'contact'])->name('users.contact');
-   Route::get('/detail', [HomeController::class, 'detail'])->name('users.detail');
+   Route::get('/detail/{id}',[HomeController::class, 'detail'])->name('users.detail');
+   Route::get('/posts/{id}',[HomeController::class, 'posts'])->name('users.posts');
+
+   
 
 
 

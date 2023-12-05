@@ -33,20 +33,20 @@
         </div>
         <div class="row">
             @foreach($newProducts as $product)
-            <div class="col-md-3 col-6 py-4">
+            <a class="col-md-3 col-6 py-4" href="{{route('users.detail',['id'=>$product->id])}}">
                 <div class="coffee_menu_wrapper d-flex align-items-center border overflow-hidden rounded h-100">
                     <div class="single_coffee_menu wow fadeInUp h-100 p-1" data-wow-duration="1.3s" data-wow-delay="0.2s">
                         <div class="coffee_menu_image">
                             <img class="rounded" style="" width="100%" height="100%" src="{{$product->main_image}}" alt="coffee">
                         </div>
                         <div class="py-3 d-flex flex-column align-items-center justify-content-between text-center flex-grow-1 mt-auto">
-                            <h6 style="line-height: 1.5; min-height: 3em; /* Limit to 2 lines */ overflow: hidden;">{{$product->name}}</h6>
+                            <h5 class="text-dark" style="line-height: 1.5; min-height: 3em; /* Limit to 2 lines */ overflow: hidden;">{{$product->name}}</h5>
                             <p class="text-black my-2">{{number_format($product->price, 0) }} đ</p>
                             <button class="btn btn-outline-primary btn-sm">Đặt hàng ngay</button>
                         </div>
                     </div>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
 </section>

@@ -24,15 +24,15 @@
 <section class="container pt-50 mp-50">
     <div class="row">
         @foreach($blogs as $blog)
-        <div class="col-md-4 d-flex">
+        <div class="col-md-4 d-flex wow fadeInUp" >
             <div class="align-self-stretch overflow-hidden">
                 <img width="100%" height="300px" src="{{$blog->main_image}}" alt="" srcset="">
                 </img>
                 <div class="text py-4 d-block h-50">
                     <div class="meta">
-                        <div><a href="#">{{ \Carbon\Carbon::parse($blog->created_at)->format('d/m/Y') }}</a></div>
+                        <p>{{ \Carbon\Carbon::parse($blog->created_at)->format('d/m/Y') }}</p>
                     </div>
-                    <h4 class="" style=""><a href="#">{{$blog->title}}</a></h4>
+                    <a class="" href="{{route('users.posts',['id'=>$blog->id])}}"><h4>{{$blog->title}}</h4></a>
                     <p>{{ substr(strip_tags($blog->content), 0, 200) }}</p>
                     <!-- <div>{!! $blog->content !!}</div> -->
 
