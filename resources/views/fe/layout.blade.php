@@ -54,7 +54,8 @@
                             <div class="col-lg-12">
                                 <nav class="navbar navbar-expand-lg">
                                     <a class="sidebar-brand d-flex align-items-center justify-content-center my-" href="{{route('users.home')}}">
-                                        <img height="40px" src="{{ asset('/interface/images/logo.png')}}" alt="logo" srcset=""><h6 class="font-weight-bold">WinterCoffee</h6>
+                                        <img height="40px" src="{{ asset('/interface/images/logo.png')}}" alt="logo" srcset="">
+                                        <h6 class="font-weight-bold">WinterCoffee</h6>
                                     </a>
                                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                         <span class="toggler-icon"></span>
@@ -63,24 +64,39 @@
                                     </button>
 
                                     <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                        <ul id="nav" class="navbar-nav ml-auto">
-                                            <li class="nav-item active">
+                                        <ul class="navbar-nav mr-auto">
+                                            <li class="nav-item @if(Route::currentRouteName() == 'users.home') active @endif">
                                                 <a class="" href="{{route('users.home')}}">Trang chủ</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item @if(Route::currentRouteName() == 'users.product') active @endif">
                                                 <a class="" href="{{route('users.product')}}">Sản phẩm của chúng tôi</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item @if(Route::currentRouteName() == 'users.blog') active @endif">
                                                 <a class="" href="{{route('users.blog')}}">Blog cà phê</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item @if(Route::currentRouteName() == 'users.about') active @endif">
                                                 <a class="" href="{{route('users.about')}}">Về chúng tôi</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item @if(Route::currentRouteName() == 'users.contact') active @endif">
                                                 <a class="" href="{{route('users.contact')}}">Liên hệ</a>
                                             </li>
-                                            <li class="nav-item">
-                                                <a class="" href="{{route('order')}}"><i class="lni lni-cart"></i></a>
+                                            <!-- Nav Item - Messages -->
+                                            <li class="nav-item dropdown no-arrow" id="carts">
+                                                <a class="nav-link dropdown-toggle" id="bag-carts" href="{{route('shop-cart')}}">
+                                                    <i class="fas fa-shopping-cart"></i>
+                                                    <!-- Counter - Messages -->
+                                                    <sup class="bg-primary p-1 rounded-circle">@if(session('CART'))
+                                                        {{count(session('CART'))}}
+                                                        @else
+                                                        0
+                                                        @endif
+                                                    </sup>
+                                                </a>
+                                            </li>
+                                            <li class="nav-item @if(Route::currentRouteName() == 'order') active @endif">
+                                                <a class="px-3" href="{{route('signin')}}">
+                                                    <i class="fas fa-user"></i>
+                                                </a>
                                             </li>
                                         </ul>
                                     </div> <!-- navbar collapse -->
@@ -91,6 +107,10 @@
                 </div> <!-- header navbar -->
 
             </section>
+            <div class="notiProduct" style="display: none;">
+                Thêm vào giỏ hàng thành công!
+            </div>
+
 
             <!--====== HEADER PART ENDS ======-->
 
@@ -102,6 +122,8 @@
 
             </div>
             <!-- End of Main Content -->
+
+
 
             <!-- Footer -->
             <!--====== FOOTER PART START ======-->
@@ -219,6 +241,41 @@
     <script src="{{asset('/interface/js/main.js')}}"></script>
 
     <script src="assets/js/main.js"></script>
+    <script>
+        $(document).on('click', '.cart-btn', function(e) {
+            var id = $(this).attr('id');
+            $.ajax({
+                url: "{{ route('api.cart.add') }}",
+                method: "post",
+                data: {
+                    id: id,
+                },
+                success: function(response) {
+                    $("#carts").load(' #bag-carts');
+                    $('.notiProduct').slideDown('fast');
+                    $('.notiProduct').delay(2000).slideUp('fast');
+                },
+            });
+        });
+    </script>
+    <script>
+        $(document).on('click', '.del-cart', function() {
+            var id = $(this).attr('id');
+            $.ajax({
+                url: "{{ route('api.cart.delete') }}",
+                method: "get",
+                data: {
+                    id: id,
+                },
+                success: function(response) {
+                    $("#carts").load(' #bag-carts');
+                    $("#cart").load(' #data-cart');
+                    $("#carts").load(' #bag-carts');
+                    $("#total").load(' #total-price');
+                },
+            });
+        });
+    </script>
 
 </body>
 

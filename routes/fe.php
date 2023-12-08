@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Route;
    Route::get('/detail/{id}',[HomeController::class, 'detail'])->name('users.detail');
    Route::get('/posts/{id}',[HomeController::class, 'posts'])->name('users.posts');
 
+   Route::get('/signin',[HomeController::class, 'signin'])->name('signin');
+   Route::get('/signup',[HomeController::class, 'signup'])->name('signup');
+
+
+
    
 
 

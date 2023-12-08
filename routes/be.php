@@ -52,8 +52,7 @@ Route::post('/register',[LoginController::class,'register'])->name('users.regist
 Route::get('/login', [LoginController::class, 'viewLogin'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('admin.login');
 Route::get('/logout',[LoginController::class,'logout'])->name('admin.logout');
-// order
-Route::get('/order', [HomeController::class, 'order'])->name('order');
+
 
 
 

@@ -75,4 +75,14 @@ class HomeController extends Controller
 
         return view('fe.contact.contact', compact('categories','products','newProducts'));
     }
+    // 
+    public function signin()
+    {
+        return view('fe.signin');
+    }
+    // 
+    public function signup()
+    {
+        return view('fe.signup');
+    }
 }
