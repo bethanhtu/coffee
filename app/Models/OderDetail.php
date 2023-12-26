@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class OderDetail extends Model
 {
-    use HasFactory, softDeletes;
-    protected $fillable = ["order_id", "product_id", "quantity", "price", "total"];
+    use HasFactory;
+    protected $fillable =['order-id','product_id','quantity','price','total'];
 }

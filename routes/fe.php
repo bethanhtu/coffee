@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthContronller;
+use App\Http\Controllers\OderController;
 use App\Http\Controllers\User\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,11 @@ use Illuminate\Support\Facades\Route;
    Route::get('/signin',[HomeController::class, 'signin'])->name('signin');
    Route::get('/signup',[HomeController::class, 'signup'])->name('signup');
 
+   Route::post('/signup',[AuthContronller::class,'register'])->name('register');
+   Route::post('/loginu',[AuthContronller::class,'loginUser'])->name('login-user');
+   Route::get('/logoutu',[AuthContronller::class,'logoutUser'])->name('logout-user');
+
+   Route::get('/check-out',[OderController::class,'ckeckOut'])->name('check-out');
 
 
    

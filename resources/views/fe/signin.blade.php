@@ -37,9 +37,9 @@
                                 <div class="p-5">
                                     <div class="d-flex align-items-center justify-content-center my-4">
                                         <img height="40px" src="{{ asset('/interface/images/logo.png')}}" alt="logo" srcset="">
-                                        <h4 class="text-primary font-weight-bold">Đăng nhập</h4>
+                                        <h4 class="text-primary font-weight-bold">Đăng nhập user</h4>
                                     </div>
-                                    <form class="user" action="{{route('login')}}" method="post">
+                                    <form class="user" action="{{route('login-user')}}" method="post">
                                         @csrf
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nhập email của bạn" name="email">

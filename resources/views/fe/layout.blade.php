@@ -96,6 +96,10 @@
                                             <li class="nav-item @if(Route::currentRouteName() == 'order') active @endif">
                                                 <a class="px-3" href="{{route('signin')}}">
                                                     <i class="fas fa-user"></i>
+                                                    @if(\Illuminate\Support\Facades\Auth::check())
+                                                    <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
+                                                    <a href="{{route('logout-user')}}" onclick="return confirm ('bạn có thật sự muốn đăng xuất?');">Đăng xuất</a>
+                                                    @endif
                                                 </a>
                                             </li>
                                         </ul>

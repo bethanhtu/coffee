@@ -39,7 +39,7 @@
                                         <img height="40px" src="{{ asset('/interface/images/logo.png')}}" alt="logo" srcset="">
                                         <h4 class="text-primary font-weight-bold">Đăng ký</h4>
                                     </div>
-                                    <form class="user" action="{{route('users.register')}}" method="post" role="form" enctype="multipart/form-data">
+                                    <form class="user" action="{{route('register')}}" method="post" role="form" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="name" name="name" value="" onblur="checkname()" placeholder="Tên" ; Required />
