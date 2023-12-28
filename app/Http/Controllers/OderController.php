@@ -21,7 +21,7 @@ class OderController extends Controller
                 $total += $cart['product']['price']* $cart['quantity'];
             }
         }
-        return view('fe.check-out', compact('total'));
+        return view('fe.checkout', compact('total'));
     }
 
     public function vnpay(Request $request){
@@ -92,7 +92,7 @@ class OderController extends Controller
             return redirect()->route('home')->with('success','Đặt hàng thành công');
         }catch (\Exception $exception){
             DB::rollBack();
-            return redirect()->back()->with('success','Đặt hàng không thành công');
+            return redirect()->back()->with('error','Lỗi: '. $exception->getMessage());
         }
 
     }

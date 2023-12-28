@@ -117,7 +117,25 @@
 
 
             <!--====== HEADER PART ENDS ======-->
-
+            <!-- Alert -->
+            @if(\Illuminate\Support\Facades\Session::has('success'))
+            <div style="margin-top: 70px;" class="alert alert-success position-fixed fixed-top w-25 ml-auto animate__animated animate__slideInRight" role="alert" id="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="alert-heading font-weight-bold">Well done !</i></h5>
+                <p class="mb-0">{{\Illuminate\Support\Facades\Session::get('success')}}</p>
+            </div>
+            @endif
+            @if(\Illuminate\Support\Facades\Session::has('error'))
+            <div class="alert alert-danger position-fixed fixed-bottom w-50 mt-5 ml-auto animate__animated animate__slideInRight" role="alert" id="">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h5 class="alert-heading font-weight-bold">Xảy ra lỗi !</h5>
+                <p class="mb-0 text-sm">{{\Illuminate\Support\Facades\Session::get('error')}}</p>
+            </div>
+            @endif
             <!-- Main Content -->
             <div id="content">
                 <div class="">

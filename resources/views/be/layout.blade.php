@@ -318,7 +318,7 @@
                 <!-- End of Topbar -->
 
 
-                <!-- Begin Page Content -->
+                <!-- Alert -->
                 @if(\Illuminate\Support\Facades\Session::has('success'))
                 <div style="margin-top: 70px;" class="alert alert-success position-fixed fixed-top w-25 ml-auto animate__animated animate__slideInRight" role="alert" id="alert">
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -337,6 +337,7 @@
                     <p class="mb-0 text-sm">{{\Illuminate\Support\Facades\Session::get('error')}}</p>
                 </div>
                 @endif
+                
                 <!-- container-fluid -->
                 <div class="container-fluid border-left pt-4">
                     @yield('content')

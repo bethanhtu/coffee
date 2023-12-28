@@ -107,8 +107,8 @@
                     </div>
                     <div>
                         <button class="btn btn-primary py-2 px-4">Đặt ngay</button>
-                        <a href="#" class="primary-btn" style="margin-bottom:20px">COD</a>
-                            <a href="#" class="primary-btn">VNPAY</a>
+                        <a href="{{route('check-out')}}" class="primary-btn" style="margin-bottom:20px">COD</a>
+                            <a href="{{route('check-out')}}" class="primary-btn">VNPAY</a>
                     </div>
                 </div>
             </div>
