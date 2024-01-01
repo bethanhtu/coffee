@@ -93,14 +93,43 @@
                                                     </sup>
                                                 </a>
                                             </li>
-                                            <li class="nav-item @if(Route::currentRouteName() == 'order') active @endif">
-                                                <a class="px-3" href="{{route('signin')}}">
-                                                    <i class="fas fa-user"></i>
+                                            <!-- Nav Item - User Information -->
+                                            <li class="nav-item dropdown no-arrow">
+                                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     @if(\Illuminate\Support\Facades\Auth::check())
-                                                    <p>{{\Illuminate\Support\Facades\Auth::user()->name}}</p>
-                                                    <a href="{{route('logout-user')}}" onclick="return confirm ('bạn có thật sự muốn đăng xuất?');">Đăng xuất</a>
+                                                    <!-- User is logged in, display user's name -->
+                                                    <span>{{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
+                                                    @else
+                                                    <!-- User is not logged in, display the logo -->
+                                                    <i class="fas fa-user"></i>
                                                     @endif
+
                                                 </a>
+                                                <!-- Dropdown - User Information -->
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                                    <a class="dropdown-item p-2 text-dark" href="{{route('profile')}}">
+                                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                        Profile
+                                                    </a>
+                                                    <a class="dropdown-item p-2 text-dark" href="{{route('myorder')}}">
+                                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                        Theo dõi đơn hàng
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    @auth
+                                                    <!-- User is logged in, display logout link -->
+                                                    <a class="dropdown-item p-2 text-dark" href="{{ route('logout-user') }}" onclick="return confirm('Bạn có thật sự muốn đăng xuất?');">
+                                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                        Đăng xuất
+                                                    </a>
+                                                    @else
+                                                    <!-- User is not logged in, display login link -->
+                                                    <a class="dropdown-item p-2 text-dark" href="{{ route('signin') }}">
+                                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                                        Đăng nhập
+                                                    </a>
+                                                    @endauth
+                                                </div>
                                             </li>
                                         </ul>
                                     </div> <!-- navbar collapse -->

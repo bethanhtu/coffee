@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\Orders;
 use App\Models\Product;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -80,6 +82,20 @@ class HomeController extends Controller
     {
         return view('fe.signin');
     }
+    public function profile()
+    {
+        $user = auth()->user();
+        return view('fe.profile', compact('user'));
+    }
+    public function myorder()
+{
+    $user = auth()->user();
+    $myorder = Orders::where('user_id', $user->id)->get();
+    // Remove the following line if you have confirmed that $myorder contains the expected data
+    // dd($myorder);
+
+    return view('fe.myorder', compact('myorder'));
+}
     // 
     public function signup()
     {

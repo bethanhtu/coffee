@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         //
-        Schema::create('order_detail', function (Blueprint $table) {
+        Schema::create('oder_details', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('order_id');
+            $table->foreignId('order_id')->constrained();
             $table->bigInteger('product_id');
             $table->integer('quantity');
             $table->double('price');

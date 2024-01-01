@@ -5,8 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class OderDetail extends Model
+class Orders extends Model
 {
     use HasFactory;
-    protected $fillable =['order-id','product_id','quantity','price','total'];
+    protected $fillable =['user_id','total_price','note','name','phone','address','method','status'];
 }

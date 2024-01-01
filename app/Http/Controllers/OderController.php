@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Oder;
 use App\Models\OderDetail;
+use App\Models\OderDetails;
+use App\Models\Orders;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -46,7 +48,7 @@ class OderController extends Controller
                 }
             }
             $data = $request->all();
-            $order = Oder::create([
+            $order = Orders::create([
                'user_id'=>Auth::user()->id,
                'total_price' => $total,
                'note'=> $data['note'],
@@ -57,8 +59,8 @@ class OderController extends Controller
                'status'=>1,
            ]);
             foreach ($carts as $cart){
-                OderDetail::create([
-                    'order-id'   => $order->id,
+                OderDetails::create([
+                    'order_id'   => $order->id,
                     'product_id' => $cart['product']['id'],
                     'quantity'   => $cart['quantity'],
                     'price'      => $cart['product']['price'],
@@ -76,7 +78,6 @@ class OderController extends Controller
                     "main_image" => $product['main_image'],
                     "second_image" => $product['second_image'],
                     "sold" => $product['sold'],
-                    "origin" => $product['origin'],
                     "content" => $product['content'],
                 ];
                 Product::where('id', $cart['product']['id'])->update($dataPro);
@@ -89,7 +90,7 @@ class OderController extends Controller
             });
             $request->session()->pull(self::CART_KEY);
             DB::commit();
-            return redirect()->route('home')->with('success','Đặt hàng thành công');
+            return redirect()->route('users.home')->with('success','Đặt hàng thành công');
         }catch (\Exception $exception){
             DB::rollBack();
             return redirect()->back()->with('error','Lỗi: '. $exception->getMessage());
@@ -223,7 +224,7 @@ class OderController extends Controller
                         $total += $cart['product']['price']* $cart['quantity'];
                     }
                 }
-                $order = Oder::create([
+                $order = Orders::create([
                                            'user_id'=> Auth::user()->id,
                                            'total_price' => $total,
                                            'note'=> $data[5],
@@ -234,7 +235,7 @@ class OderController extends Controller
                                            'status'=>1,
                                        ]);
                 foreach ($carts as $cart) {
-                    OderDetail::create([
+                    OderDetails::create([
                                             'order-id'   => $order->id,
                                             'product_id' => $cart['product']['id'],
                                             'quantity'   => $cart['quantity'],
