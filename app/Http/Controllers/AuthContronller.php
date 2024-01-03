@@ -26,12 +26,24 @@ class AuthContronller extends Controller
         return redirect()->back()->with('success','Đăng ký thành công');
     }
 
-    public function loginUser(Request $request){
-            if (Auth::attempt(['email'=>$request->email,'password'=>$request->password, 'level'=>2])){
+    public function loginUser(Request $request) {
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password, 'level' => 2])) {
+            // Kiểm tra quyền của người dùng
+            $user = Auth::user();
+            
+            if ($user->level == 1) {
+                // Nếu có quyền admin, chuyển hướng đến route admin
+                return redirect()->route('admin.dashboard');
+            } else {
+                // Ngược lại, chuyển hướng đến route user
                 return redirect()->route('users.home');
             }
-            return back();
+        }
+    
+        // Đăng nhập không thành công, chuyển hướng về trang trước đó
+        return back();
     }
+    
 
     public function logoutUser(){
         Auth::logout();

@@ -84,6 +84,11 @@
                     <i class="fas fa-newspaper fa-sm"></i>
                     <span>Bài viết</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('admin.orders.list')}}">
+                    <i class="fas fa-newspaper fa-sm"></i>
+                    <span>Đơn hàng</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider">
 

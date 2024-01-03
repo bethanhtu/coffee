@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\OrdersController;
 use App\Http\Controllers\User\HomeController;
 use App\Models\Blog;
 
@@ -40,6 +41,10 @@ use App\Models\Blog;
             Route::get('/edit/{id}',[BlogController::class, 'doEdit'])->name('admin.blog.doEdit');
             Route::post('/edit',[BlogController::class, 'edit'])->name('admin.blog.edit');
             Route::get('/delete/{id}',[BlogController::class,'delete'])->name('admin.blog.delete');
+        });
+        Route::prefix('/orders')->group(function(){
+            Route::get('/', [OrdersController::class, 'list'])->name('admin.orders.list');
+            Route::get('/detail/{id}',[OrdersController::class, 'ordersDetail'])->name('admin.orders.detail');
         });
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('/charts', [AdminController::class, 'charts'])->name('admin.charts');
