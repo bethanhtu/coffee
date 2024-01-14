@@ -18,6 +18,12 @@ class UserController extends Controller
 
     public function add(Request $request)
     {
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email',
+            'password'=>'required|min:5',
+            'phone'=>'required|numeric'
+        ]);
         try {
             $data = $request->all();
             unset($data['_token']);

@@ -2,9 +2,9 @@
 @section('content')
 <div style="margin-top: 84px;"></div>
 
-<div class="container">
+<div class="container pb-120">
     <div class="d-flex justify-content-between">
-        <h2 class="text-primary font-weight-bold">Đơn hàng</h2>
+        <h2 class="text-primary font-weight-bold">Theo dõi đơn hàng</h2>
     </div>
     <div class="table-responsive">
 

@@ -3,7 +3,7 @@
 <!-- BANNER -->
 <div id="home" class="header_slider slider-active">
     <div class="single_slider bg_cover d-flex align-items-center" style="background-image: url({{ asset('/interface/images/slider-1.jpg')}})">
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-md-9">
                     <div class="slider_content">
@@ -13,10 +13,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="single_slider bg_cover d-flex align-items-center" style="background-image: url({{ asset('/interface/images/slider-2.jpg')}})">
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-md-9">
                     <div class="slider_content">
@@ -26,10 +26,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="single_slider bg_cover d-flex align-items-center" style="background-image: url({{ asset('/interface/images/slider-3.jpg')}})">
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
                 <div class="col-md-9">
                     <div class="slider_content">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 <!-- BANNER -->
@@ -145,19 +145,19 @@
             <div class="col-md-4 col-sm-12">
                 <div class="single_counter mt-30 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.2s">
                     <span class="count"><span class="counter">36546</span></span>
-                    <p>Coffee Served</p>
+                    <p>Sản phẩm bán ra</p>
                 </div> <!-- single counter -->
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="single_counter mt-30 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.5s">
                     <span class="count"><span class="counter">28</span></span>
-                    <p>Type of Coffees</p>
+                    <p>Vị cà phê khác nhau</p>
                 </div> <!-- single counter -->
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="single_counter mt-30 wow fadeIn" data-wow-duration="1.3s" data-wow-delay="0.8s">
                     <span class="count"><span class="counter">12</span></span>
-                    <p>Team Members</p>
+                    <p>Năm thành lập</p>
                 </div> <!-- single counter -->
             </div>
         </div> <!-- row -->
@@ -203,76 +203,30 @@
         <div class="row justify-content-center">
             <div class="col-lg-6">
                 <div class="section_title text-center pb-30">
-                    <h4 class="title">Đánh giá của khách hàng</h4>
+                    <h4 class="title">Blog Cà phê</h4>
                     <span class="line"></span>
                 </div>
             </div>
         </div>
-        <div class="row customer_active">
-            <div class="col-lg-6">
-                <div class="single_customer d-sm-flex align-items-center mt-30">
-                    <div class="customer_image">
-                        <img src="{{ asset('/interface/images/customer-1.jpg')}}" alt="customer">
+        @foreach($hotBlogs as $blog)
+        <div class="col-md-4 d-flex wow fadeInUp">
+            <div class="align-self-stretch overflow-hidden">
+                <img width="100%" height="300px" src="{{$blog->main_image}}" alt="" srcset="">
+                </img>
+                <div class="text py-4 d-block h-50">
+                    <div class="meta">
+                        <p>{{ \Carbon\Carbon::parse($blog->created_at)->format('d/m/Y') }}</p>
                     </div>
-                    <div class="customer_content media-body">
-                        <div class="customer_content_wrapper media-body">
-                            <h5 class="author_name">Justyna Helen</h5>
-                            <span class="sub_title">Coffee Lover</span>
-                            <p>Lorem ipsum dolor sit amdi scing elitr, sed diam nonumy eirmo tem invidunt ut labore etdolo magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
-                            <ul class="star">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="single_customer d-sm-flex align-items-center mt-30">
-                    <div class="customer_image">
-                        <img src="{{ asset('/interface/images/customer-2.jpg')}}" alt="customer">
-                    </div>
-                    <div class="customer_content media-body">
-                        <div class="customer_content_wrapper media-body">
-                            <h5 class="author_name">Fajar Siddiq</h5>
-                            <span class="sub_title">Coffee Enthusiast</span>
-                            <p>Lorem ipsum dolor sit amdi scing elitr, sed diam nonumy eirmo tem invidunt ut labore etdolo magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
-                            <ul class="star">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="single_customer d-sm-flex align-items-center mt-30">
-                    <div class="customer_image">
-                        <img src="{{ asset('/interface/images/customer-3.jpg')}}" alt="customer">
-                    </div>
-                    <div class="customer_content media-body">
-                        <div class="customer_content_wrapper media-body">
-                            <h5 class="author_name">Rob Hope</h5>
-                            <span class="sub_title">Enthusiasts</span>
-                            <p>Lorem ipsum dolor sit amdi scing elitr, sed diam nonumy eirmo tem invidunt ut labore etdolo magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</p>
-                            <ul class="star">
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                                <li><i class="lni lni-star-filled"></i></li>
-                            </ul>
-                        </div>
-                    </div>
+                    <a class="" href="{{route('users.posts',['id'=>$blog->id])}}">
+                        <h4>{{$blog->title}}</h4>
+                    </a>
+                    <p>{{ substr(strip_tags($blog->content), 0, 200) }}</p>
+                    <!-- <div>{!! $blog->content !!}</div> -->
+
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </section>
 

@@ -44,6 +44,7 @@ use App\Models\Blog;
         });
         Route::prefix('/orders')->group(function(){
             Route::get('/', [OrdersController::class, 'list'])->name('admin.orders.list');
+            Route::post('/update',[OrdersController::class,'edit'])->name('admin.order.edit');
             Route::get('/detail/{id}',[OrdersController::class, 'ordersDetail'])->name('admin.orders.detail');
         });
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');

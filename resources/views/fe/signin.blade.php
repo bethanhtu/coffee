@@ -42,10 +42,10 @@
                                     <form class="user" action="{{route('login-user')}}" method="post">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nhập email của bạn" name="email">
+                                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Nhập email của bạn" name="email" Required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Mật khẩu" name="password">
+                                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Mật khẩu" name="password" minlength="5" Required>
                                         </div>
                                         <div class="form-group">
                                             <div class="custom-control custom-checkbox small">

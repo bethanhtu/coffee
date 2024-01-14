@@ -22,7 +22,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">
                                 Doanh thu (Tháng)</div>
-                            <div class="h5 mb-0 font-weight-bold">$40,000</div>
+                            <div class="h5 mb-0 font-weight-bold">{{ number_format($totalMonth) }} đ</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-info"></i>
@@ -40,7 +40,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">
                                 Doanh thu (Năm)</div>
-                            <div class="h5 mb-0 font-weight-bold">$215,000</div>
+                            <div class="h5 mb-0 font-weight-bold">{{ number_format($totalRevenue) }} đ</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-dollar-sign fa-2x text-info"></i>
@@ -56,11 +56,11 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-uppercase mb-1">Đơn hàng
+                            <div class="text-xs font-weight-bold text-uppercase mb-1">Tổng đơn hàng
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold">50</div>
+                                    <div class="h5 mb-0 mr-3 font-weight-bold">{{ $totalOrders }}</div>
                                 </div>
                                 <div class="col">
                                     <div class="progress progress-sm mr-2">
@@ -84,8 +84,8 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-uppercase mb-1">
-                                Đơn hàng đang xử lí</div>
-                            <div class="h5 mb-0 font-weight-bold">18</div>
+                                Đơn hàng trong tháng</div>
+                            <div class="h5 mb-0 font-weight-bold">{{ $ordersInMonth }}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-info"></i>
@@ -105,7 +105,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Sơ đồ tổng doanh thu</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -133,7 +133,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Doanh thu các nguồn</h6>
                     <div class="dropdown no-arrow">
                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
@@ -172,12 +172,12 @@
     <div class="row">
 
         <!-- Content Column -->
-        <div class="col-lg-6 mb-4">
+        <div class="col-lg-12 mb-4">
 
             <!-- Project Card Example -->
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Số liệu</h6>
                 </div>
                 <div class="card-body">
                     <h4 class="small font-weight-bold">Server Migration <span class="float-right">20%</span></h4>
@@ -207,7 +207,7 @@
         <div class="col-lg-6 mb-4">
 
             <!-- Illustrations -->
-            <div class="card shadow mb-4">
+            <!-- <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
                 </div>
@@ -221,7 +221,7 @@
                     <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
                         unDraw &rarr;</a>
                 </div>
-            </div>
+            </div> -->
             
         </div>
     </div>

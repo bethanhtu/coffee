@@ -6,14 +6,14 @@
         <div class="container">
             <form action="{{route('order')}}" class="checkout__form" method="post">
                 @csrf
-                <div class="row">
+                <div class="row py-5">
                     <div class="col-lg-6">
                         <h4>Thông tin</h4>
                         <hr>
                         <div class="row">
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    <p>Tên khách hàng</p>
+                                    <p>Tên người nhận</p>
                                     <input class="form-control" required="" type="text" id="name" name="name" value="{{old('name')}}">
                                 </div>
                             </div>

@@ -63,7 +63,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-8">
                                 <label for="inputCity">Tên</label>
-                                <input type="text" class="form-control col-sm-10" id="name" name="name" value="" onblur="checkname()" ; Required />
+                                <input type="text" class="form-control col-sm-10" id="name" name="name" value="" onblur="checkname()" minlength="20" Required />
 
                             </div>
                             <div class="form-group col-md-4">
@@ -85,14 +85,14 @@
                                 <input type="number" class="form-control col-sm-10" id="price" name="price" value="{{old('price')}}" onblur="checkPrice();" Required>
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="inputCity">Ảnh chính</label>
-                                <input type="file" class="" id="mainImage" name="mainImage" accept="image/png, image/gif, image/jpeg" onchange="checkImageMain();" value="" Required>
-
+                                <label class="w-50" for="inputCity">Ảnh chính</label><br>
+                                <input type="file" class="custom-file-input" id="mainImage" name="mainImage" accept="image/png, image/gif, image/jpeg" onchange="previewImage();" style="display: none;" required>
+                                <img src="https://www.shutterstock.com/image-vector/vector-line-icon-select-260nw-2340983585.jpg" class="w-50" id="imagePreview" class="img-fluid" onclick="document.getElementById('mainImage').click();" alt="Chưa chọn ảnh">
                             </div>
                             <div class="form-group col-md-4">
-                                <label for="inputState">Ảnh phụ</label>
-                                <input type="file" class="" id="secondImage" name="secondImage" accept="image/png, image/gif, image/jpeg" onchange="checkImageSecond();" value="" Required>
-
+                                <label class="w-50" for="inputState">Ảnh phụ</label><br>
+                                <input type="file" class="" id="secondImage" name="secondImage" accept="image/png, image/gif, image/jpeg" onchange="previewImage2();" style="display: none;" Required>
+                                <img src="https://www.shutterstock.com/image-vector/vector-line-icon-select-260nw-2340983585.jpg" class="w-50" id="imagePreview2" class="img-fluid" onclick="document.getElementById('secondImage').click();" alt="Chưa chọn ảnh">
                             </div>
                         </div>
                         <div class="form-group">
@@ -125,7 +125,7 @@
                             </div>
                             <div class="form-group col-md-7">
                                 <label for="inputCity">Tên sản phẩm</label>
-                                <input type="text" class="form-control" id="ename" name="name" value="" onblur="checkname()" ; Required />
+                                <input type="text" class="form-control" id="ename" name="name" value="" onblur="checkname()" minlength="20" ; Required />
                             </div>
 
                             <div class="form-group col-md-3">
@@ -148,7 +148,7 @@
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="inputCity" id="nameMainImage">Ảnh chính</label>
-                                <input type="file" class="form-control btn" id="mainImage" name="mainImage"  accept="image/png, image/gif, image/jpeg" onchange="checkImageMain();" value="hhh">
+                                <input type="file" class="form-control btn" id="mainImage" name="mainImage" accept="image/png, image/gif, image/jpeg" onchange="checkImageMain();" value="hhh">
 
                             </div>
                             <div class="form-group col-md-3">
@@ -172,17 +172,66 @@
     <!-- Ckeditor -->
     <script>
         ClassicEditor
-            .create( document.querySelector( '#editor' ),{
+            .create(document.querySelector('#editor'), {
                 ckfinder: {
                     uploadUrl: "{{route('image.upload').'?_token='.csrf_token()}}",
                 }
             })
-            .catch( error => {
-                console.error( error );
-            } );
+            .catch(error => {
+                console.error(error);
+            });
     </script>
     <script>
-    
-</script>
+        function previewImage() {
+            var input = document.getElementById('mainImage');
+            var preview = document.getElementById('imagePreview');
+            var label = document.querySelector('.custom-file-label');
+            var button = document.querySelector('.btn');
+
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                preview.src = reader.result;
+                label.innerHTML = file.name;
+                button.style.display = 'none';
+                preview.style.display = 'block';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '';
+                label.innerHTML = 'Choose file';
+                button.style.display = 'block';
+                preview.style.display = 'none';
+            }
+        }
+        function previewImage2() {
+            var input = document.getElementById('secondImage');
+            var preview = document.getElementById('imagePreview2');
+            var label = document.querySelector('.custom-file-label');
+            var button = document.querySelector('.btn');
+
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onloadend = function() {
+                preview.src = reader.result;
+                label.innerHTML = file.name;
+                button.style.display = 'none';
+                preview.style.display = 'block';
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = '';
+                label.innerHTML = 'Choose file';
+                button.style.display = 'block';
+                preview.style.display = 'none';
+            }
+        }
+    </script>
 
     @endsection

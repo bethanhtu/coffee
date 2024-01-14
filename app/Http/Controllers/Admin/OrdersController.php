@@ -15,16 +15,26 @@ class OrdersController extends Controller
     public function list()
     {
         $list = Orders::all();
-        // dd($list[3]->user->name);
         return view('be.orders.list', compact('list'));
     }
     public function ordersDetail($id)
     {
-        $ordersdetail = OderDetails::find($id);
+        $ordersdetail = OderDetails::orderBy('id','DESC')->where('order_id',$id)->get();
         $order = Orders::find($id);
         // Lấy danh sách sản phẩm từ product_id trong chi tiết đơn hàng
-        $productId = $ordersdetail->product_id;
-        $product = Product::find($productId);
-        return view('be.orders.detail', compact('ordersdetail', 'order', 'product'));
+        return view('be.orders.detail', compact('ordersdetail', 'order'));
+    }
+    public function edit(Request $request)
+    {
+        try {
+            $id = $request->id;
+            $data = $request->status;
+            $order = Orders::find($id);
+            $order->status = $data;
+            $order->save();
+        }catch (\Exception $exception){
+            return redirect()->back()->with('error', 'Sửa thất bại');
+        }
+        return redirect()->back()->with('success','Sửa thành công');
     }
 }

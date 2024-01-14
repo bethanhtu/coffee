@@ -42,22 +42,17 @@
                                     <form class="user" action="{{route('register')}}" method="post" role="form" enctype="multipart/form-data">
                                         @csrf
                                         <div class="form-group">
-                                            <input type="text" class="form-control form-control-user" id="name" name="name" value="" onblur="checkname()" placeholder="Tên" ; Required />
+                                            <input type="text" class="form-control form-control-user" id="name" name="name" value="" onblur="checkname()" placeholder="Tên" minlength="10" Required />
                                         </div>
-
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="email" name="email" value="" onblur="checkEmail();" placeholder="Email" Required>
                                         </div>
-
-
                                         <div class="form-group">
-                                            <input type="password" class="form-control form-control-user" id="password" name="password" value="" onblur="checkPass();" placeholder="Mật khẩu" Required>
+                                            <input type="password" class="form-control form-control-user" id="password" name="password" value="" onblur="checkPass();" placeholder="Mật khẩu" minlength="5" Required>
                                         </div>
-
                                         <div class="form-group">
                                             <input type="number" class="form-control form-control-user" id="phone" name="phone" value="" onblur="checkPhone();" placeholder="Số điện thoại" Required>
                                         </div>
-
                                         <button class="btn btn-primary btn-user btn-block" type="submit">Đăng ký</button>
                                     </form>
                                     <hr>

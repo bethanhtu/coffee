@@ -85,7 +85,7 @@
                                                 <a class="nav-link dropdown-toggle" id="bag-carts" href="{{route('shop-cart')}}">
                                                     <i class="fas fa-shopping-cart"></i>
                                                     <!-- Counter - Messages -->
-                                                    <sup class="bg-primary p-1 rounded-circle">@if(session('CART'))
+                                                    <sup class="badge badge-primary badge-counter">@if(session('CART'))
                                                         {{count(session('CART'))}}
                                                         @else
                                                         0
@@ -324,6 +324,37 @@
                     $("#carts").load(' #bag-carts');
                     $("#total").load(' #total-price');
                 },
+            });
+        });
+    </script>
+    <script>
+        $(document).on('click', '.inc', function() {
+            let qty = new Number($(this).attr('name'));
+            qty += 1;
+            let id = $(this).attr('id');
+            $.get("{{ route('api.cart.update') }}", {
+                    id: id,
+                    qty: qty
+                },
+                function(data) {
+                    $("#cart").load(' #data-cart');
+                    $("#total-price").load(' .total-price');
+                    window.location.reload();
+                },
+            );
+
+        });
+        $(document).on('click', '.dec', function() {
+            let qty = new Number($(this).attr('name'));
+            qty -= 1;
+            let id = $(this).attr('id');
+            $.get("{{ route('api.cart.update') }}", {
+                id: id,
+                qty: qty
+            }, function(data) {
+                $("#cart").load(' #data-cart');
+                $("#total-price").load(' .total-price');
+                window.location.reload();
             });
         });
     </script>

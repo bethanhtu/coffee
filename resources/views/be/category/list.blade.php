@@ -44,7 +44,7 @@
 
                             <div class="form-group">
                                 <label for="">Tên</label> <span id="errorname"></span>
-                                <input type="text" class="form-control"  id="name" name="name"   value="" onblur="checkname()"; Required />
+                                <input type="text" class="form-control"  id="name" name="name"   value="" onblur="checkname()"; minlength="10" Required />
                             </div>
 
                         </div>

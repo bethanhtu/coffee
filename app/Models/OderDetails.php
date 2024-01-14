@@ -13,4 +13,7 @@ class OderDetails extends Model
     {
         return $this->hasMany(Product::class);
     }
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }

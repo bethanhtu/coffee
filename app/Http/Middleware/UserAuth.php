@@ -20,6 +20,6 @@ class UserAuth
         if (Auth::check()){
             return $next($request);
         }
-        return back()->with('error','Lỗi: ');
+        return redirect()->back()->with('error', 'Vui lòng đăng nhập tài khoản');
     }
 }

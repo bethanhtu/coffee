@@ -15,18 +15,19 @@ class HomeController extends Controller
     //
     public function home()
     {
+        $hotBlogs = Blog::all()->take(4);
         $categories = Category::all();
         $products = Product::all();
         $newProducts = Product::orderBy('id', 'desc')->take(4)->get();
 
-        return view('fe.home.home', compact('categories','products','newProducts'));
+        return view('fe.home.home', compact('categories','products','newProducts', 'hotBlogs'));
     }
     //
     public function product()
     {
         $categories = Category::all();
         $products = Product::all();
-        $newProducts = Product::orderBy('id', 'desc')->take(4)->get();
+        $newProducts = Product::all();
 
         return view('fe.product.product', compact('categories','products','newProducts'));
     }
@@ -64,8 +65,7 @@ class HomeController extends Controller
     {
         $categories = Category::all();
         $products = Product::all();
-        $newProducts = Product::orderBy('id', 'desc')->take(4)->get();
-
+        $newProducts = Product::orderBy('id', 'desc')->take(8)->get();
         return view('fe.about.about', compact('categories','products','newProducts'));
     }
     //

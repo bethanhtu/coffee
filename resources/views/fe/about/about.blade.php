@@ -105,7 +105,7 @@
 </section>
 
 
-<section id="customer" class="customer_area pb-30">
+<!-- <section id="customer" class="customer_area pb-30">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-6">
@@ -222,7 +222,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 <!--====== ABOUT PART ENDS ======-->
 
 @endsection

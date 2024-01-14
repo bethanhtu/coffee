@@ -23,7 +23,14 @@ class OderController extends Controller
                 $total += $cart['product']['price']* $cart['quantity'];
             }
         }
-        return view('fe.checkout', compact('total'));
+        // Kiểm tra tổng giá trị đơn hàng
+        if ($total > 0) {
+            // Nếu có sản phẩm trong giỏ hàng, chuyển hướng đến trang thanh toán
+            return view('fe.checkout', compact('total'));
+        } else {
+            // Nếu giỏ hàng trống, chuyển hướng hoặc hiển thị thông báo lỗi
+            return redirect()->back()->with('error', 'Giỏ hàng của bạn đang trống. Vui lòng chọn sản phẩm để đặt hàng.');
+        }
     }
 
     public function vnpay(Request $request){

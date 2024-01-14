@@ -2,11 +2,15 @@
 @section('content')
 <div style="margin-top: 84px;"></div>
 <!-- Product section-->
-<section class="">
+<section class="py-1">
     <div class="container px-lg-5 my-5">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6">
-                <img class="rounded" style="" width="100%" height="100%" src="{{asset($products->main_image)}}" alt="$products->name">
+            <div class="col-md-6 pr-5">
+                <img id="main-image" class="rounded" style="" width="100%" height="100%" src="{{asset($products->main_image)}}" alt="$products->name">
+                <div class="py-1">
+                    <img class="rounded w-25" onclick="change_image(this)" src="{{asset($products->main_image)}}">
+                    <img class="rounded w-25" onclick="change_image(this)" src="{{asset($products->second_image)}}">
+                </div>
             </div>
             <div class="col-md-6">
                 <h3 class="display-5 fw-bolder">{{$products->name}}</h3>
@@ -15,9 +19,8 @@
                 </div>
                 <div class="lead">{!! $products->content !!}</div>
                 <div class="d-flex mt-5">
-                    <input class="form-control text-center px-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                    <button class="btn btn-outline-primary btn-sm mx-2">Thêm vào giỏ hàng</button>
-                    <button class="btn btn-outline-primary btn-sm">Đặt hàng ngay</button>
+                    <!-- <input class="form-control text-center px-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" /> -->
+                    <a href="#order" class="btn btn-outline-primary cart-btn" id="{{$products->id}}"><span class="icon_bag_alt"></span> Thêm vào giỏ hàng</a>
                 </div>
             </div>
         </div>
@@ -52,7 +55,14 @@
             </a>
             @endforeach
         </div>
+
     </div>
 </section>
-
+<script>
+    function change_image(image) {
+        var container = document.getElementById("main-image");
+        container.src = image.src;
+    }
+    document.addEventListener("DOMContentLoaded", function(event) {});
+</script>
 @endsection

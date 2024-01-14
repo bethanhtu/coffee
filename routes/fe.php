@@ -23,8 +23,7 @@ use Illuminate\Support\Facades\Route;
    Route::post('/signup',[AuthContronller::class,'register'])->name('register');
    Route::post('/loginu',[AuthContronller::class,'loginUser'])->name('login-user');
    Route::get('/logoutu',[AuthContronller::class,'logoutUser'])->name('logout-user');
-
-
+   Route::post('/change-password', [AuthContronller::class, 'changePassword'])->name('change-password');
 
    Route::middleware('user')->get('/check-out',[OderController::class,'ckeckOut'])->name('check-out');
    Route::post('/order',[OderController::class,'makeOrder'])->name('order');
